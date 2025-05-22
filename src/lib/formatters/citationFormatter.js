@@ -1,9 +1,10 @@
-export function formatCitation(type, data) {
+function _formatCitation(type, data) {
   let citation = '';
   switch (type) {
     case 'book_single_author':
       citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>.`;
-      if (data.cityOfPub) citation += ` ${data.cityOfPub},`;
+      // City:Publisher Year
+      if (data.cityOfPub) citation += ` ${data.cityOfPub}:`;
       citation += ` ${data.publisher}, ${data.pubYear}.`;
       break;
     case 'book_multiple_authors':
@@ -16,13 +17,20 @@ export function formatCitation(type, data) {
       citation += `. <em>${data.bookTitle}</em>. ${data.publisher}, ${data.pubYear}.`;
       break;
     case 'book_corporate_author':
-      citation = `${data.corporateAuthorName}. <em>${data.bookTitle}</em>.`;
-      if (data.cityOfPub) citation += ` ${data.cityOfPub},`;
-      citation += ` ${data.publisher}, ${data.pubYear}.`;
+      // Corporate author formatting with city punctuation
+      if (data.corporateAuthorName === data.publisher) {
+        citation = `<em>${data.bookTitle}</em>.`;
+        if (data.cityOfPub) citation += ` ${data.cityOfPub}:`;
+        citation += ` ${data.publisher}, ${data.pubYear}.`;
+      } else {
+        citation = `${data.corporateAuthorName}. <em>${data.bookTitle}</em>.`;
+        if (data.cityOfPub) citation += ` ${data.cityOfPub}:`;
+        citation += ` ${data.publisher}, ${data.pubYear}.`;
+      }
       break;
     case 'book_no_author':
       citation = `<em>${data.bookTitle}</em>.`;
-      if (data.cityOfPub) citation += ` ${data.cityOfPub},`;
+      if (data.cityOfPub) citation += ` ${data.cityOfPub}:`;
       citation += ` ${data.publisher}, ${data.pubYear}.`;
       break;
     case 'translated_book':
@@ -32,12 +40,17 @@ export function formatCitation(type, data) {
       citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>. Edited by ${data.editorFirstName} ${data.editorLastName}, ${data.publisher}, ${data.pubYear}.`;
       break;
     case 'work_in_anthology':
-      citation = `${data.authorLastName}, ${data.authorFirstName}. "${data.workTitle}." <em>${data.collectionTitle}</em>, edited by ${data.editorFirstName} ${data.editorLastName}, ${data.publisher}, ${data.pubYear}, ${data.pageRange}.`;
+      // Ensure page range prefixed with pp. or p.
+      let pr = data.pageRange.includes('-') ? `pp. ${data.pageRange}` : `p. ${data.pageRange}`;
+      citation = `${data.authorLastName}, ${data.authorFirstName}. "${data.workTitle}." <em>${data.collectionTitle}</em>, edited by ${data.editorFirstName} ${data.editorLastName}, ${data.publisher}, ${data.pubYear}, ${pr}.`;
       break;
     case 'article_magazine':
       citation = `${data.authorLastName}, ${data.authorFirstName}. "${data.articleTitle}." <em>${data.periodicalTitle}</em>, `;
-      if(data.pubDay) citation += `${data.pubDay} `;
-      citation += `${data.pubMonth}. ${data.pubYear}, pp. ${data.pageRange}.`; // Assuming pageRange includes "pp." if needed, or adjust as per MLA for magazines.
+      // Date: Day Month Year (no comma before year)
+      if (data.pubDay && data.pubMonth && data.pubYear) {
+        citation += `${data.pubDay} ${data.pubMonth} ${data.pubYear}, `;
+      }
+      citation += `pp. ${data.pageRange}.`;
       break;
     case 'article_newspaper':
       if (data.authorLastName && data.authorFirstName) {
@@ -47,28 +60,76 @@ export function formatCitation(type, data) {
       if (data.newspaperCity) {
           citation += ` [${data.newspaperCity}]`;
       }
-      citation += `, ${data.pubDay} ${data.pubMonth}. ${data.pubYear}`;
+      citation += `, ${data.pubDay} ${data.pubMonth} ${data.pubYear}`;
       if (data.edition) {
           citation += `, ${data.edition}`;
       }
       citation += `, ${data.pageNumber}.`;
       break;
     case 'website':
-      if (data.authorLastName && data.authorFirstName) {
-        citation += `${data.authorLastName}, ${data.authorFirstName}. `;
-      }
-      citation += `"${data.pageTitle}." <em>${data.websiteName}</em>`;
-      if (data.publisher) {
-        citation += `, ${data.publisher}`;
-      }
-      let pubDateParts = [data.pubDay, data.pubMonth, data.pubYear].filter(Boolean).map(p => p.toString().trim());
-      if (pubDateParts.length > 0) {
-        citation += `, ${pubDateParts.join(' ')}`;
-      }
-      citation += `, ${data.url}. Accessed ${data.accessDay} ${data.accessMonth}. ${data.accessYear}.`;
+      // Website: ensure period before URL and date order
+      citation += `"${data.pageTitle}." <em>${data.websiteName}</em>.`;
+      if (data.publisher) citation += ` ${data.publisher},`;
+      // Publication date
+      let dateParts = [data.pubDay, data.pubMonth, data.pubYear].filter(Boolean);
+      if (dateParts.length) citation += ` ${dateParts.join(' ')}`;
+      // URL and access
+      citation += `. ${data.url}. Accessed ${data.accessDay} ${data.accessMonth} ${data.accessYear}.`;
       break;
     default:
       return 'Citation format not yet supported for this type.';
   }
+
   return citation;
+}
+
+// Add support for additional citation types
+export function formatAdditional(type, data) {
+  let citation = '';
+  switch(type) {
+    case 'republished_book':
+      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>. ${data.originalPubYear}. ${data.publisher}, ${data.repubYear}.`;
+      break;
+    case 'edition_book':
+      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>. ${data.editionNumber} ed., ${data.publisher}, ${data.pubYear}.`;
+      break;
+    case 'multivolume_work':
+      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.workTitle}</em>. vol. ${data.volumeNumber}, ${data.publisher}, ${data.pubYear}.`;
+      break;
+    case 'government_publication':
+      citation = `${data.agencyName}. <em>${data.docTitle}</em>.`;
+      if (data.congressSession) citation += ` ${data.congressSession}.`;
+      citation += ` ${data.publisher}, ${data.pubYear}.`;
+      if (data.reportNumber) citation += ` ${data.reportNumber}.`;
+      break;
+    case 'pamphlet':
+      citation = `<em>${data.pamphletTitle}</em>.`;
+      if (data.corporateAuthorName) citation += ` ${data.corporateAuthorName},`;
+      citation += ` ${data.pubYear}.`;
+      break;
+    case 'dissertation':
+      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.title}</em>. ${data.degreeType}, ${data.schoolName}, ${data.pubYear}.`;
+      if (data.umiNumber) citation += ` UMI, ${data.umiNumber}.`;
+      break;
+    case 'poem_short_story':
+      let pages = data.pageNumber.includes('-') ? `pp. ${data.pageNumber}` : `p. ${data.pageNumber}`;
+      citation = `${data.authorLastName}, ${data.authorFirstName}. "${data.workTitle}." <em>${data.collectionTitle}</em>`;
+      if (data.editorFirstName && data.editorLastName) citation += `, edited by ${data.editorFirstName} ${data.editorLastName}`;
+      citation += `, ${data.publisher}, ${data.pubYear}, ${pages}.`;
+      break;
+    default:
+      return null;
+  }
+  return citation;
+}
+
+// Wrap original function to include additional types
+export function formatCitation(type, data) {
+  const base = _formatCitation(type, data);
+  if (base !== 'Citation format not yet supported for this type.') {
+    return base;
+  }
+  const add = formatAdditional(type, data);
+  if (add) return add;
+  return base;
 }

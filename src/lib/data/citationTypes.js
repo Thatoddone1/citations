@@ -132,7 +132,7 @@ export const citationTypes = {
   website: {
     label: 'Website / Web Page',
     description: 'For content from a website.',
-    quoteText: 'Author (if any). "Title of Page/Article." <em>Title of Website</em>, Publisher (if different from website name), Publication Date (if available), URL. Accessed Date.',
+    quoteText: 'Author (if any). "Title of Page/Article." <em>Title of Website</em>, Publisher (if different), Publication Date (if available), URL. Accessed Date.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name (if known)", required: false },
       { id: 'authorFirstName', label: "Author's First Name (if known)", required: false },
@@ -147,8 +147,102 @@ export const citationTypes = {
       { id: 'accessMonth', label: 'Month Accessed', required: true },
       { id: 'accessYear', label: 'Year Accessed', type: 'number', required: true }
     ]
+  },
+  republished_book: {
+    label: 'Republished Book',
+    description: 'Original publication date before the standard publication info.',
+    quoteText: 'Last, First. <em>Title of Book</em>. Original Publication Year. Publisher, Republished Year.',
+    fields: [
+      { id: 'authorLastName', label: "Author's Last Name", required: true },
+      { id: 'authorFirstName', label: "Author's First Name", required: true },
+      { id: 'bookTitle', label: 'Title of Book', required: true },
+      { id: 'originalPubYear', label: 'Original Publication Year', type: 'number', required: true },
+      { id: 'publisher', label: 'Publisher', required: true },
+      { id: 'repubYear', label: 'Republished Year', type: 'number', required: true }
+    ]
+  },
+  edition_book: {
+    label: 'Book – Subsequent Edition',
+    description: 'A book in a later edition.',
+    quoteText: 'Last, First. <em>Title of Book</em>. Xth ed., Publisher, Year.',
+    fields: [
+      { id: 'authorLastName', label: "Author's Last Name", required: true },
+      { id: 'authorFirstName', label: "Author's First Name", required: true },
+      { id: 'bookTitle', label: 'Title of Book', required: true },
+      { id: 'editionNumber', label: 'Edition (e.g., 3rd)', required: true },
+      { id: 'publisher', label: 'Publisher', required: true },
+      { id: 'pubYear', label: 'Publication Year', type: 'number', required: true }
+    ]
+  },
+  multivolume_work: {
+    label: 'Multivolume Work',
+    description: 'A work published in multiple volumes.',
+    quoteText: 'Last, First. <em>Title of Work</em>. Translated by Translator, vol. X, Publisher, Year.',
+    fields: [
+      { id: 'authorLastName', label: "Author's Last Name", required: true },
+      { id: 'authorFirstName', label: "Author's First Name", required: true },
+      { id: 'workTitle', label: 'Title of Work', required: true },
+      { id: 'translatorFirstName', label: "Translator's First Name", required: false },
+      { id: 'translatorLastName', label: "Translator's Last Name", required: false },
+      { id: 'volumeNumber', label: 'Volume Number', type: 'number', required: true },
+      { id: 'publisher', label: 'Publisher', required: true },
+      { id: 'pubYear', label: 'Publication Year', type: 'number', required: true }
+    ]
+  },
+  government_publication: {
+    label: 'Government Publication',
+    description: 'Cite a government document or report.',
+    quoteText: 'Government Agency. <em>Title of Document</em>. Government Printing Office, Year.',
+    fields: [
+      { id: 'agencyName', label: 'Government Agency Name', required: true },
+      { id: 'docTitle', label: 'Title of Document', required: true },
+      { id: 'publisher', label: 'Publisher (e.g., Government Printing Office)', required: true },
+      { id: 'pubYear', label: 'Publication Year', type: 'number', required: true },
+      { id: 'congressSession', label: 'Congress Number and Session (if applicable)' , required: false },
+      { id: 'reportNumber', label: 'Report Number (if any)', required: false }
+    ]
+  },
+  pamphlet: {
+    label: 'Pamphlet',
+    description: 'Cite a pamphlet like a book without author or with corporate author.',
+    quoteText: '<em>Title of Pamphlet</em>. Corporate Author, Year.',
+    fields: [
+      { id: 'pamphletTitle', label: 'Title of Pamphlet', required: true },
+      { id: 'corporateAuthorName', label: 'Corporate Author/Sponsor (if any)', required: false },
+      { id: 'pubYear', label: 'Publication Year', type: 'number', required: true }
+    ]
+  },
+  dissertation: {
+    label: 'Dissertation or Thesis',
+    description: 'Cite a dissertation or master’s thesis.',
+    quoteText: 'Last, First. <em>Title</em>. Dissertation, University, Year.',
+    fields: [
+      { id: 'authorLastName', label: "Author's Last Name", required: true },
+      { id: 'authorFirstName', label: "Author's First Name", required: true },
+      { id: 'title', label: 'Title of Dissertation/Thesis', required: true },
+      { id: 'degreeType', label: 'Degree (e.g., Dissertation or MA thesis)', required: true },
+      { id: 'schoolName', label: 'Degree-Granting Institution', required: true },
+      { id: 'pubYear', label: 'Year Awarded', type: 'number', required: true },
+      { id: 'umiNumber', label: 'UMI Order Number (if any)', required: false }
+    ]
+  },
+  poem_short_story: {
+    label: 'Poem or Short Story',
+    description: 'Cite a poem or short story from a collection.',
+    quoteText: 'Last, First. "Title of Work." <em>Title of Collection</em>, edited by Editor, Publisher, Year, p. X.',
+    fields: [
+      { id: 'authorLastName', label: "Author's Last Name", required: true },
+      { id: 'authorFirstName', label: "Author's First Name", required: true },
+      { id: 'workTitle', label: 'Title of Poem/Story', required: true },
+      { id: 'collectionTitle', label: 'Title of Collection', required: true },
+      { id: 'editorFirstName', label: "Editor's First Name", required: false },
+      { id: 'editorLastName', label: "Editor's Last Name", required: false },
+      { id: 'publisher', label: 'Publisher', required: true },
+      { id: 'pubYear', label: 'Publication Year', type: 'number', required: true },
+      { id: 'pageNumber', label: 'Page Number', required: true }
+    ]
   }
-  // Add other citation types here as needed
+// Add other citation types here as needed
 };
 
 export function getEmptyFormData(typeKey, allCitationTypes = citationTypes) {
