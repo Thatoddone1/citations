@@ -33,6 +33,7 @@ export const citationTypes = {
     label: 'Book with 2+ Authors',
     description: 'For a book with two or more authors.',
     quoteText: 'First Author Last, First. For 2 authors: and Second Author First Last. For 3+ authors: et al. <em>Title of Book</em>. Publisher, Publication Year.',
+    example: 'Gillespie, Paula, and Neal Lerner. <em>The Allyn and Bacon Guide to Peer Tutoring</em>. Allyn and Bacon, 2000.',
     fields: [
       { id: 'authorCount', label: 'Number of Authors', type: 'select', options: ['2', '3 or more'], required: true },
       { id: 'firstAuthorLastName', label: "First Author's Last Name", required: true },
@@ -48,6 +49,7 @@ export const citationTypes = {
     label: 'Book by Corporate Author/Organization',
     description: 'For a book by a commission, committee, government agency, or group.',
     quoteText: 'Name of Corporate Author. <em>Title of Book</em>. Publisher, Publication Date.',
+    example: 'American Allergy Association. <em>Allergies in Children</em>. Random House, 1998.',
     fields: [
       { id: 'corporateAuthorName', label: 'Corporate Author Name', required: true },
       { id: 'bookTitle', label: 'Title of Book', required: true },
@@ -61,6 +63,7 @@ export const citationTypes = {
     label: 'Book with No Author',
     description: 'For a book where no author is listed.',
     quoteText: '<em>Title of Book</em>. Publisher, Publication Date.',
+    example: '<em>Encyclopedia of Indiana</em>. Somerset, 1993.',
     fields: [
       { id: 'bookTitle', label: 'Title of Book', required: true },
       { id: 'publisher', label: 'Publisher', required: true },
@@ -73,6 +76,7 @@ export const citationTypes = {
     label: 'Translated Book',
     description: 'For a book that has been translated.',
     quoteText: 'Author Last, First. <em>Title of Book</em>. Translated by Translator First Last, Publisher, Year.',
+    example: 'Foucault, Michel. <em>Madness and Civilization: A History of Insanity in the Age of Reason</em>. Translated by Richard Howard, Vintage-Random House, 1988.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },
@@ -87,6 +91,7 @@ export const citationTypes = {
     label: 'Edited Book (Work Prepared by Editor)',
     description: 'For a book prepared by an editor other than the author.',
     quoteText: 'Author Last, First. <em>Title of Book</em>. Edited by Editor First Last, Publisher, Year.',
+    example: 'Bronte, Charlotte. <em>Jane Eyre</em>. Edited by Margaret Smith, Oxford UP, 1998.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },
@@ -101,6 +106,7 @@ export const citationTypes = {
     label: 'Work in an Anthology/Collection',
     description: 'For an essay, chapter, or other work within a larger collection.',
     quoteText: 'Author Last, First. "Title of Work." <em>Title of Collection</em>, edited by Editor First Last, Publisher, Year, Page range.',
+    example: 'Harris, Muriel. "Talk to Me: Engaging Reluctant Writers." <em>A Tutor\'s Guide: Helping Writers One-to-One</em>, edited by Ben Rafoth, Heinemann, 2000, pp. 24-34.',
     fields: [
       { id: 'authorLastName', label: "Work Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Work Author's First Name", required: true },
@@ -117,6 +123,7 @@ export const citationTypes = {
     label: 'Article in a Magazine',
     description: 'For an article published in a magazine.',
     quoteText: 'Author(s). "Title of Article." <em>Title of Periodical</em>, Day Month Year, pages.',
+    example: 'Buchman, Dana. "A Special Education." <em>Good Housekeeping</em>, Mar. 2006, pp. 143-48.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },
@@ -132,6 +139,7 @@ export const citationTypes = {
     label: 'Article in a Newspaper',
     description: 'For an article in a newspaper.',
     quoteText: 'Author(s). "Title of Article." <em>Title of Newspaper</em> [City of Publication, if not well-known], Day Month Year, edition (if any), p. X or pp. X-Y.',
+    example: 'Krugman, Andrew. "Fear of Eating." <em>New York Times</em>, 21 May 2007, late ed., p. A1.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: false },
       { id: 'authorFirstName', label: "Author's First Name", required: false },
@@ -149,6 +157,7 @@ export const citationTypes = {
     label: 'Website / Web Page',
     description: 'For content from a website.',
     quoteText: 'Author (if any). "Title of Page/Article." <em>Title of Website</em>, Publisher (if different), Publication Date (if available), URL. Accessed Date.',
+    example: '<em>The Purdue OWL Family of Sites.</em> The Writing Lab and OWL at Purdue and Purdue U, 2008, owl.english.purdue.edu/owl. Accessed 23 Apr. 2008.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name (if known)", required: false },
       { id: 'authorFirstName', label: "Author's First Name (if known)", required: false },
@@ -168,6 +177,7 @@ export const citationTypes = {
     label: 'Republished Book',
     description: 'Original publication date before the standard publication info.',
     quoteText: 'Last, First. <em>Title of Book</em>. Original Publication Year. Publisher, Republished Year.',
+    example: 'Erdrich, Louise. <em>Love Medicine</em>. 1984. Perennial-Harper, 1993.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },
@@ -181,6 +191,7 @@ export const citationTypes = {
     label: 'Book – Subsequent Edition',
     description: 'A book in a later edition.',
     quoteText: 'Last, First. <em>Title of Book</em>. Xth ed., Publisher, Year.',
+    example: 'Crowley, Sharon, and Debra Hawhee. <em>Ancient Rhetorics for Contemporary Students</em>. 3rd ed., Pearson, 2004.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },
@@ -194,6 +205,7 @@ export const citationTypes = {
     label: 'Multivolume Work',
     description: 'A work published in multiple volumes.',
     quoteText: 'Last, First. <em>Title of Work</em>. Translated by Translator, vol. X, Publisher, Year.',
+    example: 'Quintilian. <em>Institutio Oratoria.</em> Translated by H. E. Butler, vol. 2, Loeb-Harvard UP, 1980.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },
@@ -207,8 +219,9 @@ export const citationTypes = {
   },
   government_publication: {
     label: 'Government Publication',
-    description: 'Cite a government document or report.',
+    description: 'Cite a government document or report. Note: the Publisher in the US is the Government Pritning Office.',
     quoteText: 'Government Agency. <em>Title of Document</em>. Government Printing Office, Year.',
+    example: 'United States, Congress, Senate, Committee on Energy and Natural Resources. <em>Hearing on the Geopolitics of Oil</em>. Government Printing Office, 2007. 110th Congress, 1st session, Senate Report 111-8.',
     fields: [
       { id: 'agencyName', label: 'Government Agency Name', required: true },
       { id: 'docTitle', label: 'Title of Document', required: true },
@@ -222,6 +235,7 @@ export const citationTypes = {
     label: 'Pamphlet',
     description: 'Cite a pamphlet like a book without author or with corporate author.',
     quoteText: '<em>Title of Pamphlet</em>. Corporate Author, Year.',
+    example: '<em>Women\'s Health: Problems of the Digestive System</em>. American College of Obstetricians and Gynecologists, 2006.',
     fields: [
       { id: 'pamphletTitle', label: 'Title of Pamphlet', required: true },
       { id: 'corporateAuthorName', label: 'Corporate Author/Sponsor (if any)', required: false },
@@ -231,7 +245,8 @@ export const citationTypes = {
   dissertation: {
     label: 'Dissertation or Thesis',
     description: 'Cite a dissertation or master’s thesis.',
-    quoteText: 'Last, First. <em>Title</em>. Dissertation, University, Year.',
+    quoteText: 'Last, First. <em>Title</em>. Dissertation, University, Year. UMI, (if you want)',
+    example: 'Bishop, Karen Lynn. <em>Documenting Institutional Identity: Strategic Writing in the IUPUI Comprehensive Campaign. </em>Dissertation, Purdue University, 2002. UMI, 2004.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },
@@ -246,6 +261,7 @@ export const citationTypes = {
     label: 'Poem or Short Story',
     description: 'Cite a poem or short story from a collection.',
     quoteText: 'Last, First. "Title of Work." <em>Title of Collection</em>, edited by Editor, Publisher, Year, p. X.',
+    example: 'Burns, Robert. "Red, Red Rose." <em>100 Best-Loved Poems</em>, edited by Philip Smith, Dover, 1995, p. 26.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },
