@@ -1,8 +1,24 @@
+/**
+ * 
+ * This document defines citation types for the formatter. Each type can include:
+ *  - label: A string that describes the citation type.
+ *  - description: A string that provides a brief description of the citation type.
+ *  - quoteText: A string that provides a template for how the citation should be formatted as a reference to the user.
+ *  - example: A string that provides an example of the citation type for the user.
+ *  - fields: An array of objects that define the fields required for that citation type.
+ *   Each field object can include:
+ *    - id: A unique identifier for the field.
+ *    - label: A string that describes the field.
+ *    - required: A boolean that indicates whether the field is required.
+ *  In order for any of this to work, you must also update the citationFormatter.js file to include the new citation types.
+ */
+
 export const citationTypes = {
   book_single_author: {
     label: 'Book with One Author',
     description: 'For a book with a single author.',
     quoteText: 'Last Name, First Name. <em>Title of Book</em>. City of Publication, Publisher, Publication Date.',
+    example: 'Smith, John. <em>The Great Book</em>. New York, Penguin Books, 2020.',
     fields: [
       { id: 'authorLastName', label: "Author's Last Name", required: true },
       { id: 'authorFirstName', label: "Author's First Name", required: true },

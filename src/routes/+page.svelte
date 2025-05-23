@@ -71,9 +71,10 @@
     document.body.removeChild(textArea);
   }
 
-  // Reactive computations for current fields, quote, and description
+  // Reactive computations for current fields, quote, description, and example
   let currentFields = $derived(citationTypes[selectedType]?.fields || []);
   let currentQuote = $derived(citationTypes[selectedType]?.quoteText || 'Select a type to see format guide.');
+  let currentExample = $derived(citationTypes[selectedType]?.example || '');
   let currentDescription = $derived(citationTypes[selectedType]?.description || '');
 
 </script>
@@ -86,7 +87,7 @@
 
   <section class="mb-4 p-3 border rounded-md bg-white shadow-sm">
     <CitationTypeSelect {citationTypes} selectedType={selectedType} on:change={(e) => selectedType = e.detail} />
-    <FormatGuide {currentQuote} {currentDescription} />
+    <FormatGuide {currentQuote} {currentDescription} {currentExample} />
   </section>
 
   <section class="mb-4 p-3 border rounded-md bg-white shadow-sm">
