@@ -3,16 +3,16 @@
   const { currentQuote, currentDescription, currentExample } = $props();
 </script>
 
-<div class="mt-2 p-2 bg-blue-50 rounded-md text-xs text-blue-600">
+<div class="mt-2 p-2 bg-blue-50 dark:bg-slate-300 dark:border-2 border-slate-600 rounded-md text-xs text-blue-500">
   <p class="font-medium text-sm">Format {#if currentExample}and Example{/if}:</p>
   <p class="">{@html currentQuote}</p>
   
   {#if currentExample}
-    <p class="text-blue-500">{@html currentExample}</p>
+    <p class="text-blue-400">{@html currentExample}</p>
   {/if}
   {#if currentDescription}
   <div class="font-medium text-sm">Description:
-    <span class="mt-1 text-blue-500 text-xs">{currentDescription}</span>
+    <span class="mt-1 text-blue-400 text-xs">{currentDescription}</span>
     </div>
   {/if}
 </div>

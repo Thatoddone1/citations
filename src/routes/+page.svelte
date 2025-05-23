@@ -87,16 +87,16 @@
 
 <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 min-h-screen">
   <header class="mb-6 text-center">
-    <h1 class="text-xl sm:text-2xl font-semibold text-slate-700">Joshua's Citation Generation</h1>
-    <p class="text-xs text-slate-500 mt-1">MLA 8 Citations, Simplified</p>
+    <h1 class="text-xl sm:text-2xl font-semibold text-slate-700 dark:text-slate-200">Joshua's Citation Generation</h1>
+    <p class="text-xs text-slate-500 mt-1 dark:text-slate-400">MLA 8 Citations, Simplified</p>
   </header>
 
-  <section class="mb-4 p-3 border rounded-md bg-white shadow-sm">
+  <section class="mb-4 p-3 border rounded-md bg-white dark:bg-slate-300 shadow-sm">
     <CitationTypeSelect {citationTypes} selectedType={selectedType} on:change={(e) => selectedType = e.detail} />
     <FormatGuide {currentQuote} {currentDescription} {currentExample} />
   </section>
 
-  <section class="mb-4 p-3 border rounded-md bg-white shadow-sm">
+  <section class="mb-4 p-3 border rounded-md bg-white dark:bg-slate-300 shadow-sm">
     <h2 class="text-base font-semibold text-slate-700 mb-2">Details:</h2>
     <form onsubmit={handleGenerate} class="space-y-2.5">
       {#each currentFields as field (field.id + selectedType)} 
@@ -114,7 +114,7 @@
     <GeneratedCitation {generatedCitation} onCopy={copyToClipboard} />
   {/if}
 
-  <section class="mb-4 p-3 border rounded-md bg-white shadow-sm">
+  <section class="mb-4 p-3 border rounded-md bg-white shadow-sm dark:bg-slate-300">
     <h2 class="text-base font-semibold text-slate-700 mb-2">More Information</h2>
     <p class="text-sm text-slate-600">MLA 8 Citation format is based on this basic citaition for all types of sources:
     <br><span class="italic text-xs">Author. Title. Title of container (self contained if book), Other contributors (translators or
@@ -126,7 +126,7 @@ Version, Number, Publisher, Publication date, Location, Date of Access (if appli
   </p>
   </section>
 
-  <footer class="mt-8 text-center text-xs text-slate-400">
+  <footer class="mt-8 text-center text-xs text-slate-300">
     <p>Always verify citations for professional use.</p>
     <p>©2025 Joshua K. Made by <a href="https://www.joshuarocks.me" class="font-bold text-blue-500 underline">Joshua K.</a></p>
     <p>Contribute with the <a href="https://www.github.com/Thatoddone1/citations" class="font-bold text-blue-500 underline">source code</a></p>

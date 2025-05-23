@@ -23,7 +23,7 @@
 </script>
 
 <div>
-  <label for={field.id} class="block text-xs font-medium text-slate-600 mb-0.5">
+  <label for={field.id} class="block text-xs font-medium text-slate-700 mb-0.5">
     {field.label}
     {#if isRequired}<span class="text-red-500 ml-0.5">*</span>{/if}
   </label>
