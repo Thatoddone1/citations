@@ -10,6 +10,7 @@
  *    - id: A unique identifier for the field.
  *    - label: A string that describes the field.
  *    - required: A boolean that indicates whether the field is required.
+ *    - note: A string that provides additional information about the field.
  *  In order for any of this to work, you must also update the citationFormatter.js file to include the new citation types.
  */
 
@@ -219,13 +220,15 @@ export const citationTypes = {
   },
   government_publication: {
     label: 'Government Publication',
-    description: 'Cite a government document or report. Note: the Publisher in the US is the Government Pritning Office.',
+    description: 'Cite a government document or report.',
     quoteText: 'Government Agency. <em>Title of Document</em>. Government Printing Office, Year.',
     example: 'United States, Congress, Senate, Committee on Energy and Natural Resources. <em>Hearing on the Geopolitics of Oil</em>. Government Printing Office, 2007. 110th Congress, 1st session, Senate Report 111-8.',
     fields: [
       { id: 'agencyName', label: 'Government Agency Name', required: true },
       { id: 'docTitle', label: 'Title of Document', required: true },
-      { id: 'publisher', label: 'Publisher (e.g., Government Printing Office)', required: true },
+      { id: 'publisher', label: 'Publisher (e.g., Government Printing Office)', required: true, note: 
+        "Publisher is usually the Government Printing Office in the US"
+       },
       { id: 'pubYear', label: 'Publication Year', type: 'number', required: true },
       { id: 'congressSession', label: 'Congress Number and Session (if applicable)' , required: false },
       { id: 'reportNumber', label: 'Report Number (if any)', required: false }
