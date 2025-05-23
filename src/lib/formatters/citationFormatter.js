@@ -117,6 +117,18 @@ export function formatAdditional(type, data) {
       if (data.editorFirstName && data.editorLastName) citation += `, edited by ${data.editorFirstName} ${data.editorLastName}`;
       citation += `, ${data.publisher}, ${data.pubYear}, ${pages}.`;
       break;
+    case 'image':
+      // Format: Artist/Photographer Last, First. "Title of Work." Date of Creation, URL (if available). Accessed Date (if applicable).
+      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.workTitle}</em>. ${data.dateOfCreation}`;
+      if (data.url) {
+        citation += `, ${data.url}`;
+        // Add access date if URL is provided and access date is available
+        if (data.accessDay && data.accessMonth && data.accessYear) {
+          citation += `. Accessed ${data.accessDay} ${data.accessMonth} ${data.accessYear}`;
+        }
+      }
+      citation += '.';
+      break;
     default:
       return null;
   }

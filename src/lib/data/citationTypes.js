@@ -276,6 +276,22 @@ export const citationTypes = {
       { id: 'pubYear', label: 'Publication Year', type: 'number', required: true },
       { id: 'pageNumber', label: 'Page Number', required: true }
     ]
+  },
+  image: {
+    label: 'Painting, Sculpture, or Photograph',
+    description: 'Cite a painting, sculpture, or photograph.',
+    quoteText: 'Artist/Photographer Last, First. <em>Title of Work</em>. Date of Creation, URL (if available). Accessed Date (if applicable).',
+    example: 'Goya, Francisco. <em>The Family of Charles IV</em>. 1800. Museo Nacional del Prado, Madrid. Museo Nacional del Prado, www.museodelprado.es/en/the-collection/art-work/the-family-of-carlos-iv/f47898fc-aalc-48f6-a779-71759e417e74. Accessed 22 May 2006.',
+    fields: [
+      { id: 'authorLastName', label: "Artist/Photographer's Last Name", required: true },
+      { id: 'authorFirstName', label: "Artist/Photographer's First Name", required: true },
+      { id: 'workTitle', label: 'Title of Work', required: true },
+      { id: 'dateOfCreation', label: 'Date of Creation', required: true },
+      { id: 'url', label: 'URL (e.g., www.example.com/page, if available)', required: false },
+      { id: 'accessDay', label: 'Day Accessed', type: 'number', required: false },
+      { id: 'accessMonth', label: 'Month Accessed', required: false },
+      { id: 'accessYear', label: 'Year Accessed', type: 'number', required: false }
+    ]
   }
 // Add other citation types here as needed
 };
