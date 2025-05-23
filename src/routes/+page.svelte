@@ -108,6 +108,18 @@
     <GeneratedCitation {generatedCitation} onCopy={copyToClipboard} />
   {/if}
 
+  <section class="mb-4 p-3 border rounded-md bg-white shadow-sm">
+    <h2 class="text-base font-semibold text-slate-700 mb-2">More Information</h2>
+    <p class="text-sm text-slate-600">MLA 8 Citation format is based on this basic citaition for all types of sources:
+    <br><span class="italic text-xs">Author. Title. Title of container (self contained if book), Other contributors (translators or
+editors), Version (edition), Number (vol. and/or no.), Publisher, Publication Date,
+Location (pages, paragraphs URL or DOI). 2nd container's title, Other contributors,
+Version, Number, Publisher, Publication date, Location, Date of Access (if applicable).
+    </span>
+    <br> This format can be adpated to almost any type of source, as you can generate at the top. 
+  </p>
+  </section>
+
   <footer class="mt-8 text-center text-xs text-slate-400">
     <p>Always verify citations for professional use.</p>
     <p>©2025 Joshua K. Made by <a href="https://www.joshuarocks.me" class="font-bold text-blue-500 underline">Joshua K.</a></p>
