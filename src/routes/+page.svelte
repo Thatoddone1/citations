@@ -33,42 +33,48 @@
     generatedCitation = formatCitation(selectedType, formData);
   }
 
-  function copyToClipboard() {
+  async function copyToClipboard() {
     if (!generatedCitation) return;
-    const tempEl = document.createElement('div');
-    tempEl.innerHTML = generatedCitation; // Use the HTML version for proper formatting
-    const plainText = tempEl.textContent || "";
     
-    navigator.clipboard.writeText(plainText).then(() => {
-        alert('Citation copied to clipboard!');
-    }).catch(err => {
-        console.error('Failed to copy with navigator: ', err);
-        // Fallback to execCommand
-        fallbackCopyToClipboard(plainText);
-    });
+    try {
+      // Try to copy as rich text (HTML) to preserve formatting in compatible applications
+      if (navigator.clipboard && navigator.clipboard.write) {
+        const htmlBlob = new Blob([generatedCitation], { type: 'text/html' });
+        const plainTextWithFormatting = convertHtmlToFormattedText(generatedCitation);
+        const textBlob = new Blob([plainTextWithFormatting], { type: 'text/plain' });
+        
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'text/html': htmlBlob,
+            'text/plain': textBlob
+          })
+        ]);
+        alert('Citation copied to clipboard with formatting!');
+        return;
+      }
+    } catch (err) {
+      console.log('Rich text copy failed, trying plain text:', err);
+    }
+
+    try {
+      // Fallback: Copy as formatted plain text (with underscores for italics)
+      const formattedText = convertHtmlToFormattedText(generatedCitation);
+      await navigator.clipboard.writeText(formattedText);
+      alert('Citation copied to clipboard!');
+    } catch (err) {
+      console.error('Failed to copy to clipboard:', err);
+      alert('Unable to copy automatically. Please manually copy the citation text above.');
+    }
   }
 
-  function fallbackCopyToClipboard(text) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.position = 'fixed';
-    textArea.style.top = '-9999px';
-    textArea.style.left = '-9999px';
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-            alert('Citation copied to clipboard (fallback)!');
-        } else {
-            alert('Failed to copy citation. Please copy manually.');
-        }
-    } catch (err) {
-        alert('Failed to copy citation. Please copy manually.');
-        console.error('Fallback copy error:', err);
-    }
-    document.body.removeChild(textArea);
+  function convertHtmlToFormattedText(html) {
+    // Convert <em> tags to underscores to indicate italics in plain text
+    return html
+      .replace(/<em>/g, '_')
+      .replace(/<\/em>/g, '_')
+      .replace(/<[^>]*>/g, '') // Remove any other HTML tags
+      .replace(/\s+/g, ' ') // Normalize whitespace
+      .trim();
   }
 
   // Reactive computations for current fields, quote, description, and example
