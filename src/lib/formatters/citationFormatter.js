@@ -118,10 +118,25 @@ export function formatAdditional(type, data) {
       citation += `, ${data.publisher}, ${data.pubYear}, ${pages}.`;
       break;
     case 'image':
-      // Format: Artist/Photographer Last, First. "Title of Work." Date of Creation, URL (if available). Accessed Date (if applicable).
+      // Format: Artist/Photographer Last, First. "Title of Work." Date of Creation. Institution, Location. Website Name, URL (if available). Accessed Date (if applicable).
       citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.workTitle}</em>. ${data.dateOfCreation}`;
+      
+      // Add institution and location if provided
+      if (data.institution) {
+        citation += `. ${data.institution}`;
+        if (data.location) {
+          citation += `, ${data.location}`;
+        }
+      }
+      
+      // Add website and URL if provided
       if (data.url) {
-        citation += `, ${data.url}`;
+        if (data.websiteName) {
+          citation += `. ${data.websiteName}, ${data.url}`;
+        } else {
+          citation += `. ${data.url}`;
+        }
+        
         // Add access date if URL is provided and access date is available
         if (data.accessDay && data.accessMonth && data.accessYear) {
           citation += `. Accessed ${data.accessDay} ${data.accessMonth} ${data.accessYear}`;
