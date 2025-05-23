@@ -3,7 +3,7 @@
   const { generatedCitation, onCopy } = $props();
 </script>
 
-<section class="p-3 border rounded-md bg-white shadow-sm">
+<section class="p-3 mb-4 border rounded-md bg-white shadow-sm">
   <h2 class="text-base font-semibold text-slate-700 mb-1.5">Your Citation:</h2>
   <div class="p-2.5 bg-slate-50 rounded-md border border-slate-200 text-xs">
     <p class="citation-text leading-relaxed">{@html generatedCitation}</p>
