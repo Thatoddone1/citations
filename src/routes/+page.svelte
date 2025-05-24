@@ -60,7 +60,7 @@ Version, Number, Publisher, Publication date, Location, Date of Access (if appli
   <footer class="mt-8 text-center text-xs text-slate-300">
     <p>Always verify citations for professional use.</p>
     <p>©2025 Joshua K. Made by <a href="https://www.joshuarocks.me" class="font-bold text-blue-500 underline">Joshua K.</a></p>
-    <p>Contribute with the <a href="https://www.github.com/Thatoddone1/citations" class="font-bold text-blue-500 underline">source code</a></p>
+    <p>Help with the <a href="https://www.github.com/Thatoddone1/citations" class="font-bold text-blue-500 underline">source code</a>, <a href="https://www.github.com/Thatoddone1/citations/issues" class="font-bold text-blue-500 underline">issue reporting</a>, and <a href="https://www.github.com/Thatoddone1/citations/releases" class="font-bold text-blue-500 underline">changelog</a></p>
   </footer>
 </div>
 
