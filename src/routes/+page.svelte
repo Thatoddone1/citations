@@ -47,13 +47,13 @@
 
   <section class="mb-4 p-3 border rounded-md bg-white shadow-sm dark:bg-slate-300">
     <h2 class="text-base font-semibold text-slate-700 mb-2">More Information</h2>
-    <p class="text-sm text-slate-600">MLA 8 Citation format is based on this basic citaition for all types of sources:
+    <p class="text-sm text-slate-600">MLA 8 Citation format is based on this basic citation for all types of sources:
     <br><span class="italic text-xs">Author. Title. Title of container (self contained if book), Other contributors (translators or
 editors), Version (edition), Number (vol. and/or no.), Publisher, Publication Date,
 Location (pages, paragraphs URL or DOI). 2nd container's title, Other contributors,
 Version, Number, Publisher, Publication date, Location, Date of Access (if applicable).
     </span>
-    <br> This format can be adpated to almost any type of source, as you can generate at the top. 
+    <br> This format can be adapted to almost any type of source, as you can generate at the top. 
   </p>
   </section>
 
