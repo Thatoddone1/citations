@@ -3,9 +3,9 @@
   const { generatedCitation, onCopy } = $props();
 </script>
 
-<section class="p-3 mb-4 border rounded-md bg-white shadow-sm">
+<section class="p-3 mb-4 border rounded-md bg-white dark:bg-slate-300 shadow-sm">
   <h2 class="text-base font-semibold text-slate-700 mb-1.5">Your Citation:</h2>
-  <div class="p-2.5 bg-slate-50 rounded-md border border-slate-200 text-xs">
+  <div class="p-2.5 bg-slate-200 rounded-md border border-slate-200 text-xs">
     <p class="citation-text leading-relaxed">{@html generatedCitation}</p>
   </div>
   <button onclick={onCopy} class="mt-2 bg-slate-200 hover:bg-slate-300 text-slate-700 py-1 px-2.5 rounded-md text-xs font-medium inline-flex items-center">
