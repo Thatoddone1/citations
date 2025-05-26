@@ -3,7 +3,7 @@
   const { currentQuote, currentDescription, currentExample } = $props();
 </script>
 
-<div class="mt-2 p-2 bg-blue-50 dark:bg-slate-300 dark:border-2 border-slate-600 rounded-md text-xs text-blue-500">
+<div class="mt-2 p-2 bg-blue-50 dark:bg-slate-300 dark:border border-black rounded-md text-xs text-blue-500">
   <p class="font-medium text-sm">Format {#if currentExample}and Example{/if}:</p>
   <p class="">{@html currentQuote}</p>
   

@@ -91,12 +91,17 @@ export async function copyToClipboard(generatedCitation) {
   }
 }
 
+import sanitizeHtml from 'sanitize-html';
+
 function convertHtmlToFormattedText(html) {
-  // Convert <em> tags to underscores to indicate italics in plain text
-  return html
+  // Sanitize HTML and convert <em> tags to underscores for italics
+  const sanitizedHtml = sanitizeHtml(html, {
+    allowedTags: ['em'], // Allow only <em> tags
+    allowedAttributes: {} // Disallow all attributes
+  });
+  return sanitizedHtml
     .replace(/<em>/g, '_')
     .replace(/<\/em>/g, '_')
-    .replace(/<[^>]*>/g, '') // Remove any other HTML tags
     .replace(/\s+/g, ' ') // Normalize whitespace
     .trim();
 }

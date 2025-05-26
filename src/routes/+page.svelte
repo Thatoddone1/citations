@@ -46,21 +46,23 @@
   {/if}
 
   <section class="mb-4 p-3 border rounded-md bg-white shadow-sm dark:bg-slate-300">
-    <h2 class="text-base font-semibold text-slate-700 mb-2">More Information</h2>
-    <p class="text-sm text-slate-600">MLA 8 Citation format is based on this basic citation for all types of sources:
-    <br><span class="italic text-xs">Author. Title. Title of container (self contained if book), Other contributors (translators or
-editors), Version (edition), Number (vol. and/or no.), Publisher, Publication Date,
-Location (pages, paragraphs URL or DOI). 2nd container's title, Other contributors,
-Version, Number, Publisher, Publication date, Location, Date of Access (if applicable).
+    <h2 class="text-base font-semibold text-slate-700 mb-2">About</h2>
+    <p class="text-sm text-slate-600">
+      Have you ever had to cite a source for a paper or essay in MLA format and had no idea how to do it? Yeah, me too. This super simple tool is designed to generate a citation by just filling in the fields. Read more about MLA 8 below.
+    </p>
+    <hr class="border-2 rounded-xl border-slate-700 mt-3 mb-3">
+    <p class="text-sm text-slate-600">
+    MLA (Modern Language Association) 8 citation format is the 8th edition of the MLA citation style. It is widely used in academia and other fields. The following citation works for almost all types of sources, but there are specific changes for some types as you can generate above.
+    <br><br><span class="italic text-xs">Author. Title. Title of container (self contained if book), Other contributors (translators or editors), Version (edition), Number (vol. and/or no.), Publisher, Publication Date, Location (pages, paragraphs URL or DOI). 2nd container's title, Other contributors, Version, Number, Publisher, Publication date, Location, Date of Access (if applicable).
     </span>
-    <br> This format can be adapted to almost any type of source, as you can generate at the top. 
+    <br><br> This format can be adapted to almost any type of source, as you can generate at the top. 
   </p>
   </section>
 
   <footer class="mt-8 text-center text-xs text-slate-400">
     <p>Always verify citations for professional use.</p>
     <p>©2025 Joshua K. Made by <a href="https://www.joshuarocks.me" class="font-bold text-blue-500 underline">Joshua K.</a></p>
-    <p>Help with the <a href="https://www.github.com/Thatoddone1/citations" class="font-bold text-blue-500 underline">source code</a>, <a href="https://www.github.com/Thatoddone1/citations/issues" class="font-bold text-blue-500 underline">issue reporting</a>, and <a href="https://www.github.com/Thatoddone1/citations/releases" class="font-bold text-blue-500 underline">changelog</a></p>
+    <p>Check out the <a href="https://www.github.com/Thatoddone1/citations" class="font-bold text-blue-500 underline">source code</a>, <a href="https://www.github.com/Thatoddone1/citations/issues" class="font-bold text-blue-500 underline">issue reporting</a>, and <a href="https://www.github.com/Thatoddone1/citations/releases" class="font-bold text-blue-500 underline">changelog</a></p>
   </footer>
 </div>
 
