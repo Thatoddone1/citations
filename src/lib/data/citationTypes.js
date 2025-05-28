@@ -311,7 +311,7 @@ export const citationTypes = {
       { id: 'presentationMonth', label: 'Month of Presentation (e.g., May)', required: true },
       { id: 'presentationYear', label: 'Year of Presentation', type: 'number', required: true },
       { id: 'venue', label: 'Venue Name', required: true },
-      { id: 'venueCity', label: 'City (and State/Country if needed)', required: true },
+      { id: 'venueCity', label: 'City (and State/Country if needed)', required: false, note: "This is not required if the name of the city is in the venue name" },
       { id: 'presentationType', label: 'Presentation Type (e.g., Keynote Address, Conference Presentation, Guest Lecture)', required: true }
     ]
   }

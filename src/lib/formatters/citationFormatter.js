@@ -1,5 +1,6 @@
-function _formatCitation(type, data) {
+function subFormatCitation(type, data) {
   let citation = '';
+  console.log("citation type: " + type)
   switch (type) {
     case 'book_single_author':
       citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>.`;
@@ -76,99 +77,105 @@ function _formatCitation(type, data) {
       // URL and access
       citation += `. ${data.url}. Accessed ${data.accessDay} ${data.accessMonth} ${data.accessYear}.`;
       break;
-    default:
-      return 'Citation format not yet supported for this type.';
-  }
-
-  return citation;
-}
-
-// Add support for additional citation types
-export function formatAdditional(type, data) {
-  let citation = '';
-  switch(type) {
-    case 'republished_book':
-      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>. ${data.originalPubYear}. ${data.publisher}, ${data.repubYear}.`;
-      break;
-    case 'edition_book':
-      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>. ${data.editionNumber} ed., ${data.publisher}, ${data.pubYear}.`;
-      break;
-    case 'multivolume_work':
-      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.workTitle}</em>. vol. ${data.volumeNumber}, ${data.publisher}, ${data.pubYear}.`;
-      break;
-    case 'government_publication':
-      citation = `${data.agencyName}. <em>${data.docTitle}</em>.`;
-      if (data.congressSession) citation += ` ${data.congressSession}.`;
-      citation += ` ${data.publisher}, ${data.pubYear}.`;
-      if (data.reportNumber) citation += ` ${data.reportNumber}.`;
-      break;
-    case 'pamphlet':
-      citation = `<em>${data.pamphletTitle}</em>.`;
-      if (data.corporateAuthorName) citation += ` ${data.corporateAuthorName},`;
-      citation += ` ${data.pubYear}.`;
-      break;
-    case 'dissertation':
-      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.title}</em>. ${data.degreeType}, ${data.schoolName}, ${data.pubYear}.`;
-      if (data.umiNumber) citation += ` UMI, ${data.umiNumber}.`;
-      break;
-    case 'poem_short_story':
-      let pages = data.pageNumber.includes('-') ? `pp. ${data.pageNumber}` : `p. ${data.pageNumber}`;
-      citation = `${data.authorLastName}, ${data.authorFirstName}. "${data.workTitle}." <em>${data.collectionTitle}</em>`;
-      if (data.editorFirstName && data.editorLastName) citation += `, edited by ${data.editorFirstName} ${data.editorLastName}`;
-      citation += `, ${data.publisher}, ${data.pubYear}, ${pages}.`;
-      break;
-    case 'image':
-      // Format: Artist/Photographer Last, First. "Title of Work." Date of Creation. Institution, Location. Website Name, URL (if available). Accessed Date (if applicable).
-      citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.workTitle}</em>. ${data.dateOfCreation}`;
-      
-      // Add institution and location if provided
-      if (data.institution) {
-        citation += `. ${data.institution}`;
-        if (data.location) {
-          citation += `, ${data.location}`;
-        }
-      }
-      
-      // Add website and URL if provided
-      if (data.url) {
-        if (data.websiteName) {
-          citation += `. ${data.websiteName}, ${data.url}`;
-        } else {
-          citation += `. ${data.url}`;
+      case 'republished_book':
+        citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>. ${data.originalPubYear}. ${data.publisher}, ${data.repubYear}.`;
+        break;
+      case 'edition_book':
+        citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>. ${data.editionNumber} ed., ${data.publisher}, ${data.pubYear}.`;
+        break;
+      case 'multivolume_work':
+        citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.workTitle}</em>. vol. ${data.volumeNumber}, ${data.publisher}, ${data.pubYear}.`;
+        break;
+      case 'government_publication':
+        citation = `${data.agencyName}. <em>${data.docTitle}</em>.`;
+        if (data.congressSession) citation += ` ${data.congressSession}.`;
+        citation += ` ${data.publisher}, ${data.pubYear}.`;
+        if (data.reportNumber) citation += ` ${data.reportNumber}.`;
+        break;
+      case 'pamphlet':
+        citation = `<em>${data.pamphletTitle}</em>.`;
+        if (data.corporateAuthorName) citation += ` ${data.corporateAuthorName},`;
+        citation += ` ${data.pubYear}.`;
+        break;
+      case 'dissertation':
+        citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.title}</em>. ${data.degreeType}, ${data.schoolName}, ${data.pubYear}.`;
+        if (data.umiNumber) citation += ` UMI, ${data.umiNumber}.`;
+        break;
+      case 'poem_short_story':
+        let pages = data.pageNumber.includes('-') ? `pp. ${data.pageNumber}` : `p. ${data.pageNumber}`;
+        citation = `${data.authorLastName}, ${data.authorFirstName}. "${data.workTitle}." <em>${data.collectionTitle}</em>`;
+        if (data.editorFirstName && data.editorLastName) citation += `, edited by ${data.editorFirstName} ${data.editorLastName}`;
+        citation += `, ${data.publisher}, ${data.pubYear}, ${pages}.`;
+        break;
+      case 'image':
+        // Format: Artist/Photographer Last, First. "Title of Work." Date of Creation. Institution, Location. Website Name, URL (if available). Accessed Date (if applicable).
+        citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.workTitle}</em>. ${data.dateOfCreation}`;
+        
+        // Add institution and location if provided
+        if (data.institution) {
+          citation += `. ${data.institution}`;
+          if (data.location) {
+            citation += `, ${data.location}`;
+          }
         }
         
-        // Add access date if URL is provided and access date is available
-        if (data.accessDay && data.accessMonth && data.accessYear) {
-          citation += `. Accessed ${data.accessDay} ${data.accessMonth} ${data.accessYear}`;
+        // Add website and URL if provided
+        if (data.url) {
+          if (data.websiteName) {
+            citation += `. ${data.websiteName}, ${data.url}`;
+          } else {
+            citation += `. ${data.url}`;
+          }
+          
+          // Add access date if URL is provided and access date is available
+          if (data.accessDay && data.accessMonth && data.accessYear) {
+            citation += `. Accessed ${data.accessDay} ${data.accessMonth} ${data.accessYear}`;
+          }
         }
-      }
-      citation += '.';
-      break;
-    case 'oral_presentation':
-      // Format: Speaker Last, First. "Title of Speech" (if any). Title of Conference/Meeting, Organization Name, Day Month Year, Venue, City. Presentation Type.
-      citation = `${data.speakerLastName}, ${data.speakerFirstName}.`;
-      
-      // Add speech title if provided
-      if (data.speechTitle) {
-        citation += ` "${data.speechTitle}."`;
-      }
-      
-      // Add conference title, organization, date, venue, and city
-      citation += ` ${data.conferenceTitle}, ${data.organizationName}, ${data.presentationDay} ${data.presentationMonth} ${data.presentationYear}, ${data.venue}, ${data.venueCity}. ${data.presentationType}.`;
-      break;
+        citation += '.';
+        break;
+      case 'oral_presentation':
+        // Format: Speaker Last, First. "Title of Speech" (if any). Title of Conference/Meeting, Organization Name, Day Month Year, Venue, City. Presentation Type.
+        citation = `${data.speakerLastName}, ${data.speakerFirstName}.`;
+        
+        // Add speech title if provided
+        if (data.speechTitle) {
+          citation += ` "${data.speechTitle}."`;
+        }
+        // Add conference title, organization, date, venue
+        citation += ` ${data.conferenceTitle}, ${data.organizationName}, ${data.presentationDay} ${data.presentationMonth} ${data.presentationYear}, ${data.venue}` ;
+        if (data.venueCity) {
+        // Add venue city if needed
+        citation += `, ${data.venueCity}.`;
+        } else {
+        citation += `.`;  
+        }
+        //add presentation type
+        citation += `${data.presentationType}.`;
+        break;
     default:
-      return null;
+      console.log("formatter error #1")
+      return 'Citation formatter error #1. If this happens again, please report';
   }
+
   return citation;
 }
+
+
 
 // Wrap original function to include additional types
 export function formatCitation(type, data) {
-  const base = _formatCitation(type, data);
-  if (base !== 'Citation format not yet supported for this type.') {
-    return base;
-  }
-  const add = formatAdditional(type, data);
-  if (add) return add;
-  return base;
+  let functionOutput
+  try {
+  functionOutput = subFormatCitation(type, data);
+  console.log("raw citation: " + functionOutput)
+} catch {
+  console.log("formatter error #3")
+  return "Citation formatter error #3. If this happens again, please report";
+}
+ if (functionOutput == null) {
+  console.log("formatter error #2")
+  return "Citation formatter error #2. If this happens again, please report";
+ }
+return functionOutput;
 }
