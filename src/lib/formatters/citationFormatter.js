@@ -144,6 +144,18 @@ export function formatAdditional(type, data) {
       }
       citation += '.';
       break;
+    case 'oral_presentation':
+      // Format: Speaker Last, First. "Title of Speech" (if any). Title of Conference/Meeting, Organization Name, Day Month Year, Venue, City. Presentation Type.
+      citation = `${data.speakerLastName}, ${data.speakerFirstName}.`;
+      
+      // Add speech title if provided
+      if (data.speechTitle) {
+        citation += ` "${data.speechTitle}."`;
+      }
+      
+      // Add conference title, organization, date, venue, and city
+      citation += ` ${data.conferenceTitle}, ${data.organizationName}, ${data.presentationDay} ${data.presentationMonth} ${data.presentationYear}, ${data.venue}, ${data.venueCity}. ${data.presentationType}.`;
+      break;
     default:
       return null;
   }

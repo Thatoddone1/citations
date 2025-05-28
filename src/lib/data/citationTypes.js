@@ -295,6 +295,25 @@ export const citationTypes = {
       { id: 'accessMonth', label: 'Month Accessed', required: false },
       { id: 'accessYear', label: 'Year Accessed', type: 'number', required: false }
     ]
+  },
+  oral_presentation: {
+    label: 'Speeches, Lectures, or Other Oral Presentations',
+    description: 'For speeches, lectures, conference presentations, keynote addresses, etc.',
+    quoteText: 'Speaker Last, First. "Title of Speech" (if any). Title of Conference/Meeting, Organization Name, Day Month Year, Venue, City. Presentation Type.',
+    example: 'Stein, Bob. "Reading and Writing in the Digital Era." Discovering Digital Dimensions, Computers and Writing Conference, 23 May 2003, Union Club Hotel, West Lafayette, IN. Keynote Address.',
+    fields: [
+      { id: 'speakerLastName', label: "Speaker\'s Last Name", required: true },
+      { id: 'speakerFirstName', label: "Speaker\'s First Name", required: true },
+      { id: 'speechTitle', label: 'Title of Speech/Presentation (if any)', required: false },
+      { id: 'conferenceTitle', label: 'Title of Conference/Meeting', required: true },
+      { id: 'organizationName', label: 'Organization Name', required: true },
+      { id: 'presentationDay', label: 'Day of Presentation', type: 'number', required: true },
+      { id: 'presentationMonth', label: 'Month of Presentation (e.g., May)', required: true },
+      { id: 'presentationYear', label: 'Year of Presentation', type: 'number', required: true },
+      { id: 'venue', label: 'Venue Name', required: true },
+      { id: 'venueCity', label: 'City (and State/Country if needed)', required: true },
+      { id: 'presentationType', label: 'Presentation Type (e.g., Keynote Address, Conference Presentation, Guest Lecture)', required: true }
+    ]
   }
 // Add other citation types here as needed
 };
