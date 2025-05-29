@@ -168,7 +168,7 @@ export const citationTypes = {
       { id: 'pubDay', label: 'Publication Day (if available)', type: 'number', required: false },
       { id: 'pubMonth', label: 'Publication Month (if available)', required: false },
       { id: 'pubYear', label: 'Publication Year (if available)', type: 'number', required: false },
-      { id: 'url', label: 'URL (e.g., www.example.com/page)', required: true },
+      { id: 'url', label: 'URL (e.g., www.example.com/page)', required: true, note: "the protocol(https://) should not be included in the URL, but the subdomain (www., comes before the main URL) should" },
       { id: 'accessDay', label: 'Day Accessed', type: 'number', required: true },
       { id: 'accessMonth', label: 'Month Accessed', required: true },
       { id: 'accessYear', label: 'Year Accessed', type: 'number', required: true }
