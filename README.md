@@ -1,2 +1,2 @@
 # Citations
-Simple MLA 8 citations generator. To report issues, please create an issue on Github. If you would like to contribute, that would be great! Just make a pull request when ready and I will try to look at it as soon as possible.
+Simple MLA 8 citations generator created with Svelte 5 and TailwindCSS 4. To report issues, please create an issue on Github. Contributions are welcome! To acceses the latest version of the site, go [here](https://citations.joshuarocks.me/)
