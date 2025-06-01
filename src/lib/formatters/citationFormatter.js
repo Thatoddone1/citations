@@ -69,13 +69,13 @@ function subFormatCitation(type, data) {
       break;
     case 'website':
       // Website: ensure period before URL and date order
-      citation += `"${data.pageTitle}." <em>${data.websiteName}</em>.`;
+      citation += `"${data.pageTitle}." <em>${data.websiteName}</em>,`;
       if (data.publisher) citation += ` ${data.publisher},`;
       // Publication date
       let dateParts = [data.pubDay, data.pubMonth, data.pubYear].filter(Boolean);
-      if (dateParts.length) citation += ` ${dateParts.join(' ')}`;
+      if (dateParts.length) citation += ` ${dateParts.join(' ')},`;
       // URL and access
-      citation += `. ${data.url}. Accessed ${data.accessDay} ${data.accessMonth} ${data.accessYear}.`;
+      citation += ` ${data.url}. Accessed ${data.accessDay} ${data.accessMonth} ${data.accessYear}.`;
       break;
       case 'republished_book':
         citation = `${data.authorLastName}, ${data.authorFirstName}. <em>${data.bookTitle}</em>. ${data.originalPubYear}. ${data.publisher}, ${data.repubYear}.`;
